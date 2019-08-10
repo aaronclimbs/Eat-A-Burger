@@ -1,0 +1,25 @@
+{
+  "name": "Eat-A-Burger",
+  "version": "1.0.0",
+  "description": "A burger logging app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brityank/Eat-A-Burger.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/brityank/Eat-A-Burger/issues"
+  },
+  "homepage": "https://github.com/brityank/Eat-A-Burger#readme",
+  "dependencies": {
+    "ejs": "^2.6.2",
+    "express": "^4.17.1",
+    "mysql": "^2.17.1"
+  }
+}
