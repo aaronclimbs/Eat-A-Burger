@@ -1,3 +1,4 @@
+// @ts-nocheck
 const mysql = require('mysql');
 
 const connection = mysql.createConnection({
@@ -5,7 +6,21 @@ const connection = mysql.createConnection({
   port: 3306,
   user: 'root',
   password: 'password',
-  database: 'burgers_db'
+  database: 'burgers_db',
+  authSwitchHandler: function ({pluginName, pluginData}, cb) {
+    if (pluginName === 'ssh-key-auth') {
+      getPrivateKey(key => {
+        const response = encrypt(key, pluginData);
+        // continue handshake by sending response data
+        // respond with error to propagate error to connect/changeUser handlers
+        cb(null, response);
+      });
+    } else {
+      const err = new Error(`Unknown AuthSwitchRequest plugin name ${pluginName}`);
+      err.fatal = true;
+      cb(err);
+    }
+  }
 })
 
 connection.connect((err) => {
