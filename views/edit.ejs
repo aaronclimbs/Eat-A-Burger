@@ -3,31 +3,30 @@
   <h1 class="display-3">Your Burger!</h1>
   <p class="lead">Your selected burger...</p>
   <hr class="my-2" />
-  <p class="lead">
-    This burger is from <%=burger.burger_name%> and you <%=burger.devoured === 0
-    ? "have not" : "have"%> eaten it!
-  </p>
-  <div class="form-group">
-    <label for=""></label>
-    <input
-      type="text"
-      class="form-control"
-      name=""
-      id=""
-      aria-describedby="helpId"
-      placeholder=""
-    />
-  </div>
-  <div class="form-group">
-    <label for=""></label>
-    <input
-      type="text"
-      class="form-control"
-      name=""
-      id=""
-      aria-describedby="helpId"
-      placeholder=""
-    />
-  </div>
+  <form action="/burgers/<%=burger.id%>?_method=PUT" method="POST">
+    <div class="form-group">
+      <label for="burger_name"></label>
+      <input
+        type="text"
+        class="form-control"
+        name="name"
+        id="burger_name"
+        value="<%=burger.burger_name%>"
+        placeholder=""
+      />
+    </div>
+    <div class="form-group">
+      <label for="devoured"></label>
+      <input
+        type="text"
+        class="form-control"
+        name="devoured"
+        id="devoured"
+        value="<%=burger.devoured === 0 ? "false" : "true"%>"
+        placeholder=""
+      />
+    </div>
+    <button class="btn btn-warning" type="submit">Save</button>
+  </form>
 </div>
 <% include partials/footer %>

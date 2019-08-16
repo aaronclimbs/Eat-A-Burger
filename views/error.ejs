@@ -1,0 +1,10 @@
+<% include partials/header %>
+<div class="jumbotron">
+  <hr class="my-2" />
+    <%if (err) {%>
+    <p class="lead"><%=JSON.stringify(err)%></p>
+    <%} else {%>
+      <p class="lead">404 NOT FOUND</p>
+      <%}%>
+</div>
+<% include partials/footer %>

@@ -17,10 +17,8 @@
         <td scope="row"><%=burger.burger_name%></td>
         <td><%=burger.devoured === 0 ? "Nope" : "DELICIOUS!"%></td>
         <td class="d-flex justify-content-end">
-          <a href="/burgers/<%=burger.id%>/eat">
-            <button type="button" name="" id="" class="btn btn-primary" btn-lg btn-block">Eat
+            <button type="button" name="" data-id="<%=burger.id%>" class="btn btn-primary eat" btn-lg btn-block">Eat
             </button>
-          </a>
           <a href="/burgers/<%=burger.id%>">
             <button class="btn btn-info ml-3">More info</button>
           </a>
@@ -29,5 +27,6 @@
       <%})%>
     </tbody>
   </table>
+<a href="/burgers/new"><button type="button" class="btn btn-secondary btn-lg btn-block">Add a burger</button></a>
 </div>
 <% include partials/footer %>

@@ -7,5 +7,7 @@
     This burger is from <%=burger[0].burger_name%> and you <%=burger[0].devoured
     === 0 ? "have not" : "have"%> eaten it!
   </p>
+  <br>
+  <button class="btn btn-warning"><a href="/burgers/<%=burger[0].id%>/edit">edit</a></button>
 </div>
 <% include partials/footer %>
