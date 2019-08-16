@@ -6,11 +6,18 @@ const router = express.Router();
 router.get("/", (req, res) => {
   burger.all(data => {
     const ejsObj = {
-      pageTitle: `Burger${req.params.id}`,
+      pageTitle: "Burgers",
       burgers: data
     };
     res.render("burgers", ejsObj);
   });
+});
+
+router.get("/burgers/new", (req, res) => {
+  const ejsObj = {
+    pageTitle: "New Burger"
+  };
+  res.render("new", ejsObj);
 });
 
 router.get("/burgers/:id", (req, res) => {
@@ -23,41 +30,61 @@ router.get("/burgers/:id", (req, res) => {
   });
 });
 
-router.get("/burgers/new", (req, res) => {
-  res.render("new");
-});
-
 router.get("/burgers/:id/edit", (req, res) => {
   burger.findOne({ id: req.params.id }, data => {
     const ejsObj = {
-      pageTitle: `Edit Burger[${data.burger_name}]`,
-      burger: data
+      pageTitle: `Edit Burger[${data[0].burger_name}]`,
+      burger: data[0]
     };
     res.render("edit", ejsObj);
   });
 });
 
 router.put("/burgers/:id", (req, res) => {
-  burger.update(req.body, `id=${req.params.id}`, result => {
-    if (result.changedRows === 0) {
-      res.status(404).redirect("/error");
-    } else {
+  burger.update(
+    {
+      burger_name: req.body.name,
+      devoured: ["true", "yes", "yum", 1].includes(
+        req.body.devoured.toLowerCase()
+      )
+        ? 1
+        : 0
+    },
+    `id=${req.params.id}`,
+    result => {
+      //   if (!result) {
+      //     res.status(404).render("error", {
+      //   pageTitle: "err.name",
+      //   err: err
+      // });
+      // } else {
+      console.log(`id ${req.params.id} was updated.`);
+      res.status(200).redirect("/");
+      // }
+    }
+  );
+});
+
+router.put("/burgers/:id/eat", (req, res) => {
+  burger.update(
+    {
+      devoured: req.body.devoured
+    },
+    `id=${req.params.id}`,
+    result => {
       console.log(`id ${req.params.id} was updated.`);
       res.status(200).redirect("/");
     }
-  });
+  );
 });
 
 router.post("/burgers", (req, res) => {
-  burger.create(
-    ["burger_name", "devoured"],
-    [req.body.name, req.body.devoured],
-    result => {
-      if (!result) throw new Error("Something went wrong.");
-      console.log(`id ${JSON.stringify(result)} was created.`);
-      res.redirect("/");
-    }
-  );
+  console.log(JSON.stringify(req.body));
+  burger.create(["burger_name", "devoured"], [[req.body.name, 0]], result => {
+    if (!result) throw new Error("Something went wrong.");
+    console.log(`id ${JSON.stringify(result)} was created.`);
+    res.redirect("/");
+  });
 });
 
 router.delete("/burgers/:id", (req, res) => {
@@ -68,6 +95,13 @@ router.delete("/burgers/:id", (req, res) => {
       console.log(`id ${JSON.stringify(result)} was deleted.`);
       res.status(200).redirect("/");
     }
+  });
+});
+
+router.get("*", (req, res) => {
+  res.render("error", {
+    pageTitle: "404 Not Found",
+    err: ""
   });
 });
 
