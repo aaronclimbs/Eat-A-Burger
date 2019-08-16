@@ -20,9 +20,7 @@ module.exports = {
 
   insertOne: (table, columns, values, callback) => {
     const queryString = `INSERT INTO ${table}(${columns.join()}) VALUES ?`;
-    connection.query(queryString, [
-      values
-    ], (err, data) => {
+    connection.query(queryString, [values], (err, data) => {
       if (err) throw err;
       callback(data)
     });
