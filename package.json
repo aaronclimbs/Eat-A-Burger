@@ -1,10 +1,12 @@
 {
-  "name": "Eat-A-Burger",
+  "name": "eat-a-burger",
   "version": "1.0.0",
   "description": "A burger logging app",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon server.js",
+    "seed": "node seeds/seed.js"
   },
   "repository": {
     "type": "git",
@@ -21,9 +23,11 @@
     "dotenv": "^8.0.0",
     "ejs": "^2.6.2",
     "express": "^4.17.1",
+    "method-override": "^3.0.0",
     "mysql": "^2.17.1"
   },
   "devDependencies": {
+    "ejs-lint": "^0.3.0",
     "nodemon": "^1.19.1"
   }
 }
