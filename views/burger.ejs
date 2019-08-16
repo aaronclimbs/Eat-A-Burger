@@ -1,0 +1,11 @@
+<% include partials/header %>
+<div class="jumbotron">
+  <h1 class="display-3">Your Burger!</h1>
+  <p class="lead">Your selected burger...</p>
+  <hr class="my-2" />
+  <p class="lead" data-id="<%=burger[0].id%>">
+    This burger is from <%=burger[0].burger_name%> and you <%=burger[0].devoured
+    === 0 ? "have not" : "have"%> eaten it!
+  </p>
+</div>
+<% include partials/footer %>

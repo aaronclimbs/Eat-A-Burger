@@ -1,0 +1,33 @@
+<% include partials/header %>
+<div class="jumbotron">
+  <h1 class="display-3">Your Burger!</h1>
+  <p class="lead">Your selected burger...</p>
+  <hr class="my-2" />
+  <p class="lead">
+    This burger is from <%=burger.burger_name%> and you <%=burger.devoured === 0
+    ? "have not" : "have"%> eaten it!
+  </p>
+  <div class="form-group">
+    <label for=""></label>
+    <input
+      type="text"
+      class="form-control"
+      name=""
+      id=""
+      aria-describedby="helpId"
+      placeholder=""
+    />
+  </div>
+  <div class="form-group">
+    <label for=""></label>
+    <input
+      type="text"
+      class="form-control"
+      name=""
+      id=""
+      aria-describedby="helpId"
+      placeholder=""
+    />
+  </div>
+</div>
+<% include partials/footer %>

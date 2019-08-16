@@ -1,0 +1,33 @@
+<% include partials/header %>
+<div class="jumbotron">
+  <h1 class="display-3">Burgers!</h1>
+  <p class="lead">All the best burgers!</p>
+  <hr class="my-1" />
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Burger Spot</th>
+        <th>Devoured?</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% burgers.forEach(burger => { %>
+      <tr>
+        <td scope="row"><%=burger.burger_name%></td>
+        <td><%=burger.devoured === 0 ? "Nope" : "DELICIOUS!"%></td>
+        <td class="d-flex justify-content-end">
+          <a href="/burgers/<%=burger.id%>/eat">
+            <button type="button" name="" id="" class="btn btn-primary" btn-lg btn-block">Eat
+            </button>
+          </a>
+          <a href="/burgers/<%=burger.id%>">
+            <button class="btn btn-info ml-3">More info</button>
+          </a>
+        </td>
+      </tr>
+      <%})%>
+    </tbody>
+  </table>
+</div>
+<% include partials/footer %>
