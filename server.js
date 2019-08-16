@@ -1,5 +1,8 @@
 const express = require('express');
 const app = express();
+require('dotenv').config();
+const methodOverride = require('method-override');
+
 
 const PORT = process.env.PORT || 3000
 
@@ -11,6 +14,8 @@ app.use(express.urlencoded({extended: true}))
 app.use(express.json());
 
 app.set("view engine", "ejs")
+
+app.use(methodOverride("_method"));
 
 app.use(routes)
 
