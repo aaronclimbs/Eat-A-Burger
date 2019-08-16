@@ -10,6 +10,14 @@ module.exports = {
     });
   },
 
+  selectOne: (table, condition, callback) => {
+    const queryString = "SELECT * FROM ?? WHERE ?";
+    connection.query(queryString, [table, condition], (err, data) => {
+      if (err) throw err;
+      callback(data);
+    });
+  },
+
   insertOne: (table, columns, values, callback) => {
     const queryString = `INSERT INTO ${table}(${columns.join()}) VALUES ?`;
     connection.query(queryString, [
